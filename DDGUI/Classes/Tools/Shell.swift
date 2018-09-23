@@ -8,7 +8,7 @@
 
 import Cocoa
 
-/// <#Description#>
+/// Shell class for running shell-commands.
 class Shell {
     /// Command to run on shell.
     private let cmd: String
