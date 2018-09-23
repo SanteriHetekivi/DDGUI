@@ -13,6 +13,7 @@
 		CFD8A07921579DA000EE4785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFD8A07721579DA000EE4785 /* Main.storyboard */; };
 		CFD8A08521579DA000EE4785 /* DDGUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD8A08421579DA000EE4785 /* DDGUITests.swift */; };
 		CFD8A09021579DA000EE4785 /* DDGUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD8A08F21579DA000EE4785 /* DDGUIUITests.swift */; };
+		CFD8A0A121579E6C00EE4785 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD8A0A021579E6C00EE4785 /* Shell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		CFD8A08B21579DA000EE4785 /* DDGUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DDGUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD8A08F21579DA000EE4785 /* DDGUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGUIUITests.swift; sourceTree = "<group>"; };
 		CFD8A09121579DA000EE4785 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFD8A0A021579E6C00EE4785 /* Shell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
+		CFD8A0A22157BCAB00EE4785 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,7 @@
 		CFD8A06521579D9E00EE4785 = {
 			isa = PBXGroup;
 			children = (
+				CFD8A0A22157BCAB00EE4785 /* README.md */,
 				CFD8A07021579D9E00EE4785 /* DDGUI */,
 				CFD8A08321579DA000EE4785 /* DDGUITests */,
 				CFD8A08E21579DA000EE4785 /* DDGUIUITests */,
@@ -96,6 +100,7 @@
 		CFD8A07021579D9E00EE4785 /* DDGUI */ = {
 			isa = PBXGroup;
 			children = (
+				CFD8A09E21579E2600EE4785 /* Classes */,
 				CFD8A07121579D9E00EE4785 /* AppDelegate.swift */,
 				CFD8A07321579D9E00EE4785 /* ViewController.swift */,
 				CFD8A07521579DA000EE4785 /* Assets.xcassets */,
@@ -122,6 +127,22 @@
 				CFD8A09121579DA000EE4785 /* Info.plist */,
 			);
 			path = DDGUIUITests;
+			sourceTree = "<group>";
+		};
+		CFD8A09E21579E2600EE4785 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CFD8A09F21579E5300EE4785 /* Tools */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		CFD8A09F21579E5300EE4785 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				CFD8A0A021579E6C00EE4785 /* Shell.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFD8A0A121579E6C00EE4785 /* Shell.swift in Sources */,
 				CFD8A07421579D9E00EE4785 /* ViewController.swift in Sources */,
 				CFD8A07221579D9E00EE4785 /* AppDelegate.swift in Sources */,
 			);
