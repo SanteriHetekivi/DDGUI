@@ -10,9 +10,46 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    /// Text field for writing out the DD-command.
+    @IBOutlet var CommandField: NSTextField!
+    
+    /// Disk selector.
+    @IBOutlet var DiskSelect: NSPopUpButtonCell!
+    
+    /// Get currently selected disk path.
+    private var DiskPath: String {
+        get {
+            let index: Int = DiskSelect.indexOfSelectedItem
+            if let diskPath: String = self.diskPaths[index]
+            {
+                return diskPath
+            }
+            else
+            {
+                return "";
+            }
+        }
+    }
+    
+    /// Path of the disk image.
+    private var filePath: String = "";
+    /// Accessor for the filePath.
+    private var FilePath: String {
+        set {
+            self.filePath = newValue
+            self.buildCommand()
+        }
+        get {
+            return self.filePath;
+        }
+    }
+    
+    /// Variable to storing the paths to disks
+    private var diskPaths: Dictionary<Int, String> = Dictionary<Int, String>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.populateDisks()
     }
 
     override var representedObject: Any? {
@@ -21,19 +58,67 @@ class ViewController: NSViewController {
         }
     }
 
-    /// When buttons is clicked this function is called.
-    /// Runs shell-command.
+    /// Action for disk changing
+    ///
+    /// - Parameter sender: NSPopUpButton that changes.
+    @IBAction func diskChanged(_ sender: NSPopUpButton) {
+        self.buildCommand()
+    }
+    
+    /// When file selection button is clicked this function is called.
     ///
     /// - Parameter sender: Button that was clicked
-    @IBAction func buttonClicked(_ sender: Any) {
+    @IBAction func selectFile(_ sender: Any) {
+        if let url: URL = NSOpenPanel().selectISO {
+            self.FilePath = url.path;
+        }
+    }
+    
+    /// Build the DD-command.
+    ///
+    /// - Returns: DD-command
+    @discardableResult private func buildCommand() -> String
+    {
+        let command: String = "dd if='"+self.FilePath+"' of='"+self.DiskPath+"'"
+        CommandField.stringValue = command
+        return command
+    }
+    
+    /// Populate the disk select.
+    private func populateDisks()-> Void
+    {
+        DiskSelect.removeAllItems()
+        self.diskPaths.removeAll()
+        
+        /* TODO: Get real disks.
         do
         {
-            let shell: Shell = try Shell(cmd: "/bin/df", args: ["-k"], onSuccess: self.onSuccess, onFailure: self.onFailure)
-            try shell.run();
+            if let url: URL = NSOpenPanel().selectISO {
+                self.FilePath = url.path;
+            }
+             let browser = UIDocumentBrowserViewController(forOpeningFilesWithContentTypes: ["public.plain-text"])
+         
+             let shell: Shell = try Shell(cmd: "/bin/df", args: ["-k"], onSuccess: self.onSuccess, onFailure: self.onFailure)
+             try shell.run();
         } catch {
             self.onFailure(result: error.localizedDescription)
         }
+         */
+        
+        // Just some dummy data.
+        let diskNames: [String] = [
+            "test",
+            "test2",
+            "test3",
+        ]
+        for (index, value) in diskNames.enumerated()
+        {
+            self.diskPaths[index] = value
+        }
+        DiskSelect.addItems(withTitles: diskNames)
     }
+    
+    
     
     /// Handles onSuccess call for shell-command.
     ///

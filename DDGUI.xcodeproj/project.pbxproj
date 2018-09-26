@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF48B831215C0642001441B9 /* NSOpenPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF48B830215C0642001441B9 /* NSOpenPanel.swift */; };
 		CFD8A07221579D9E00EE4785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD8A07121579D9E00EE4785 /* AppDelegate.swift */; };
 		CFD8A07421579D9E00EE4785 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD8A07321579D9E00EE4785 /* ViewController.swift */; };
 		CFD8A07621579DA000EE4785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFD8A07521579DA000EE4785 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF48B830215C0642001441B9 /* NSOpenPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSOpenPanel.swift; sourceTree = "<group>"; };
 		CFD8A06E21579D9E00EE4785 /* DDGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD8A07121579D9E00EE4785 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFD8A07321579D9E00EE4785 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF48B82F215C0619001441B9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CF48B830215C0642001441B9 /* NSOpenPanel.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		CFD8A06521579D9E00EE4785 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +142,7 @@
 		CFD8A09E21579E2600EE4785 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CF48B82F215C0619001441B9 /* Extensions */,
 				CFD8A09F21579E5300EE4785 /* Tools */,
 			);
 			path = Classes;
@@ -213,13 +224,16 @@
 				TargetAttributes = {
 					CFD8A06D21579D9E00EE4785 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 					CFD8A07F21579DA000EE4785 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = CFD8A06D21579D9E00EE4785;
 					};
 					CFD8A08A21579DA000EE4785 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = CFD8A06D21579D9E00EE4785;
 					};
 				};
@@ -278,6 +292,7 @@
 				CFD8A0A121579E6C00EE4785 /* Shell.swift in Sources */,
 				CFD8A07421579D9E00EE4785 /* ViewController.swift in Sources */,
 				CFD8A07221579D9E00EE4785 /* AppDelegate.swift in Sources */,
+				CF48B831215C0642001441B9 /* NSOpenPanel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,7 +466,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hetekivi.DDGUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -469,7 +484,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hetekivi.DDGUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -488,7 +503,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hetekivi.DDGUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DDGUI.app/Contents/MacOS/DDGUI";
 			};
 			name = Debug;
@@ -508,7 +523,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hetekivi.DDGUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DDGUI.app/Contents/MacOS/DDGUI";
 			};
 			name = Release;
@@ -527,7 +542,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hetekivi.DDGUIUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = DDGUI;
 			};
 			name = Debug;
@@ -546,7 +561,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hetekivi.DDGUIUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = DDGUI;
 			};
 			name = Release;
