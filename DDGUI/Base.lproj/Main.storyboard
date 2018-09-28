@@ -685,7 +685,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="DDGUI - Simple GUI for DD" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -707,12 +707,12 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="DDGUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="93"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="124"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WcU-hR-EIH">
-                                <rect key="frame" x="14" y="45" width="81" height="32"/>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FJc-52-lsI">
+                                <rect key="frame" x="14" y="76" width="81" height="32"/>
+                                <buttonCell key="cell" type="push" title="Select ISO" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FJc-52-lsI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <connections>
@@ -721,7 +721,7 @@
                                 </buttonCell>
                             </button>
                             <popUpButton verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kbn-Nn-Kyk">
-                                <rect key="frame" x="97" y="49" width="366" height="26"/>
+                                <rect key="frame" x="97" y="80" width="76" height="26"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="LxV-CX-fTq" id="TaI-fq-eyg">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -738,38 +738,54 @@
                                 </connections>
                             </popUpButton>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MoU-46-JVM">
-                                <rect key="frame" x="20" y="20" width="440" height="22"/>
+                                <rect key="frame" x="20" y="51" width="440" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="ZDI-yj-Zkx">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NcQ-rc-Rqy">
+                                <rect key="frame" x="14" y="13" width="452" height="32"/>
+                                <buttonCell key="cell" type="push" title="Run" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YkU-6G-dsf">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="runCommand:" target="XfG-lQ-9wD" id="Wvf-Yn-tHD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Kbn-Nn-Kyk" firstAttribute="leading" secondItem="WcU-hR-EIH" secondAttribute="trailing" constant="10" id="7tr-wl-Mxa"/>
-                            <constraint firstItem="MoU-46-JVM" firstAttribute="top" secondItem="WcU-hR-EIH" secondAttribute="bottom" constant="10" id="CmA-3L-s42"/>
-                            <constraint firstAttribute="trailing" secondItem="MoU-46-JVM" secondAttribute="trailing" constant="20" id="EzC-Lz-BxU"/>
-                            <constraint firstItem="Kbn-Nn-Kyk" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="QVn-YL-vIi"/>
-                            <constraint firstItem="MoU-46-JVM" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="SRM-gi-5iY"/>
-                            <constraint firstItem="Kbn-Nn-Kyk" firstAttribute="leading" secondItem="WcU-hR-EIH" secondAttribute="trailing" constant="10" id="V6z-JI-Lf5"/>
-                            <constraint firstItem="WcU-hR-EIH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="a7e-7O-ikD"/>
-                            <constraint firstItem="WcU-hR-EIH" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="k8N-eh-8Qi"/>
-                            <constraint firstItem="MoU-46-JVM" firstAttribute="top" secondItem="Kbn-Nn-Kyk" secondAttribute="bottom" constant="10" id="nwR-PN-t79"/>
-                            <constraint firstAttribute="bottom" secondItem="MoU-46-JVM" secondAttribute="bottom" constant="20" id="pVN-DM-7hY"/>
-                            <constraint firstItem="MoU-46-JVM" firstAttribute="top" secondItem="WcU-hR-EIH" secondAttribute="bottom" constant="10" id="qg7-Ju-bFL"/>
-                            <constraint firstAttribute="trailing" secondItem="Kbn-Nn-Kyk" secondAttribute="trailing" constant="20" id="xvd-vW-tBX"/>
+                            <constraint firstAttribute="trailing" secondItem="NcQ-rc-Rqy" secondAttribute="trailing" constant="20" id="0fi-85-lfw"/>
+                            <constraint firstItem="Kbn-Nn-Kyk" firstAttribute="leading" secondItem="WcU-hR-EIH" secondAttribute="trailing" constant="10" id="3Pk-VP-H6y"/>
+                            <constraint firstAttribute="trailing" secondItem="Kbn-Nn-Kyk" secondAttribute="trailing" constant="20" id="4zG-jD-wT4"/>
+                            <constraint firstAttribute="trailing" secondItem="MoU-46-JVM" secondAttribute="trailing" constant="20" id="57X-LU-42M"/>
+                            <constraint firstItem="WcU-hR-EIH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="8JM-lK-OZn"/>
+                            <constraint firstItem="NcQ-rc-Rqy" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="BtE-jr-O4m"/>
+                            <constraint firstItem="Kbn-Nn-Kyk" firstAttribute="leading" secondItem="WcU-hR-EIH" secondAttribute="trailing" constant="10" id="HFM-MO-HEy"/>
+                            <constraint firstAttribute="bottom" secondItem="NcQ-rc-Rqy" secondAttribute="bottom" constant="20" id="Jek-xN-aIm"/>
+                            <constraint firstItem="MoU-46-JVM" firstAttribute="top" secondItem="WcU-hR-EIH" secondAttribute="bottom" constant="10" id="MeY-bV-2LJ"/>
+                            <constraint firstItem="Kbn-Nn-Kyk" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="NL6-9j-bIw"/>
+                            <constraint firstItem="MoU-46-JVM" firstAttribute="top" secondItem="WcU-hR-EIH" secondAttribute="bottom" constant="10" id="P3t-0l-7Td"/>
+                            <constraint firstItem="WcU-hR-EIH" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="SaN-4x-BXc"/>
+                            <constraint firstItem="NcQ-rc-Rqy" firstAttribute="top" secondItem="MoU-46-JVM" secondAttribute="bottom" constant="10" id="cCU-oO-vvm"/>
+                            <constraint firstItem="MoU-46-JVM" firstAttribute="top" secondItem="Kbn-Nn-Kyk" secondAttribute="bottom" constant="10" id="qd7-sH-aVF"/>
+                            <constraint firstItem="NcQ-rc-Rqy" firstAttribute="top" secondItem="MoU-46-JVM" secondAttribute="bottom" constant="10" id="rQT-C1-mvk"/>
+                            <constraint firstItem="MoU-46-JVM" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="x6L-YM-Rci"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="CommandField" destination="MoU-46-JVM" id="Sg6-4R-9wO"/>
                         <outlet property="DiskSelect" destination="TaI-fq-eyg" id="hEv-ff-1CS"/>
                         <outlet property="DiskSelector" destination="TaI-fq-eyg" id="sow-lq-IEN"/>
+                        <outlet property="FileSelectButton" destination="WcU-hR-EIH" id="fhE-Cz-L41"/>
+                        <outlet property="RunButton" destination="NcQ-rc-Rqy" id="08Z-Tr-zYp"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="573.5"/>
+            <point key="canvasLocation" x="75" y="589"/>
         </scene>
     </scenes>
 </document>

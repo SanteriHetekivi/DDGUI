@@ -16,6 +16,11 @@ class ViewController: NSViewController {
     /// Disk selector.
     @IBOutlet var DiskSelect: NSPopUpButtonCell!
     
+    /// Button for selecting file.
+    @IBOutlet var FileSelectButton: NSButton!
+    
+    /// Button for running the command.
+    @IBOutlet var RunButton: NSButton!
     /// Get currently selected disk path.
     private var DiskPath: String {
         get {
@@ -63,6 +68,12 @@ class ViewController: NSViewController {
     /// - Parameter sender: NSPopUpButton that changes.
     @IBAction func diskChanged(_ sender: NSPopUpButton) {
         self.buildCommand()
+        if let selectedTitle: String = DiskSelect.titleOfSelectedItem
+        {
+            // Populate select when select is changed.
+            populateDisks()
+            DiskSelect.selectItem(withTitle: selectedTitle)
+        }
     }
     
     /// When file selection button is clicked this function is called.
@@ -71,6 +82,7 @@ class ViewController: NSViewController {
     @IBAction func selectFile(_ sender: Any) {
         if let url: URL = NSOpenPanel().selectISO {
             self.FilePath = url.path;
+            self.FileSelectButton.title = url.lastPathComponent;
         }
     }
     
@@ -79,8 +91,12 @@ class ViewController: NSViewController {
     /// - Returns: DD-command
     @discardableResult private func buildCommand() -> String
     {
-        let command: String = "dd if='"+self.FilePath+"' of='"+self.DiskPath+"'"
+        let diskPath = self.DiskPath;
+        let filePath = self.FilePath;
+        
+        let command: String = "sudo diskutil unmountDisk '"+self.DiskPath+"' && (sudo dd if='"+self.FilePath+"' of='"+self.DiskPath+"' & echo 'Writing' && sleep 2 && while pgrep ^dd; do sudo kill -INFO $(pgrep ^dd); sleep 1; done)"
         CommandField.stringValue = command
+        self.RunButton.isEnabled = !(diskPath.isEmpty || filePath.isEmpty)
         return command
     }
     
@@ -90,34 +106,47 @@ class ViewController: NSViewController {
         DiskSelect.removeAllItems()
         self.diskPaths.removeAll()
         
-        /* TODO: Get real disks.
-        do
-        {
-            if let url: URL = NSOpenPanel().selectISO {
-                self.FilePath = url.path;
+        // Read mounted volumes.
+        if let session = DASessionCreate(kCFAllocatorDefault) {
+            let keys: [URLResourceKey] = [.volumeNameKey, .volumeIsRemovableKey, .volumeIsEjectableKey]
+            if let mountedVolumes: [URL] = FileManager.default.mountedVolumeURLs(includingResourceValuesForKeys: keys, options: [])
+            {
+                var index: Int = 0;
+                for volume:URL in mountedVolumes {
+                    if let disk: DADisk = DADiskCreateFromVolumePath(kCFAllocatorDefault, session, volume as CFURL) {
+                        if let pointer: UnsafePointer<Int8> = DADiskGetBSDName(disk)
+                        {
+                            // Remove partition from the name.
+                            let stringName: NSMutableString = NSMutableString(string: String(cString: pointer))
+                            let pattern = "s[0-9]*$"
+                            let regex:NSRegularExpression = try! NSRegularExpression(pattern: pattern)
+                            regex.replaceMatches(in: stringName, options: .reportProgress, range: NSRange(location: 0,length: stringName.length), withTemplate: "")
+                            let diskName:String = stringName as String
+                            // Set disks to diskPaths dictonary
+                            self.diskPaths[index] = "/dev/"+diskName
+                            // and UI select.
+                            DiskSelect.addItem(withTitle: volume.lastPathComponent)
+                            index += 1
+                        }
+                    }
+                }
             }
-             let browser = UIDocumentBrowserViewController(forOpeningFilesWithContentTypes: ["public.plain-text"])
-         
-             let shell: Shell = try Shell(cmd: "/bin/df", args: ["-k"], onSuccess: self.onSuccess, onFailure: self.onFailure)
-             try shell.run();
-        } catch {
-            self.onFailure(result: error.localizedDescription)
         }
-         */
-        
-        // Just some dummy data.
-        let diskNames: [String] = [
-            "test",
-            "test2",
-            "test3",
-        ]
-        for (index, value) in diskNames.enumerated()
-        {
-            self.diskPaths[index] = value
-        }
-        DiskSelect.addItems(withTitles: diskNames)
     }
     
+    /// Run command that was build
+    ///
+    /// - Parameter sender: Button
+    @IBAction func runCommand(_ sender: NSButton) {
+        let theASScript: String = "tell app \"Terminal\" to do script \""+self.buildCommand()+"\""
+        var error: NSDictionary?
+        if let scriptObject = NSAppleScript(source: theASScript) {
+            let _: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
+            if (error != nil) {
+                print("error: \(error)")
+            }
+        }
+    }
     
     
     /// Handles onSuccess call for shell-command.
