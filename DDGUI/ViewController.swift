@@ -138,7 +138,7 @@ class ViewController: NSViewController {
     ///
     /// - Parameter sender: Button
     @IBAction func runCommand(_ sender: NSButton) {
-        let theASScript: String = "tell app \"Terminal\" to do script \""+self.buildCommand()+"\""
+        let theASScript: String = "tell app \"Terminal\" to reopen activate do script \""+self.buildCommand()+"\""
         var error: NSDictionary?
         if let scriptObject = NSAppleScript(source: theASScript) {
             let _: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
